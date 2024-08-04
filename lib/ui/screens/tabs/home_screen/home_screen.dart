@@ -59,67 +59,24 @@ class _HomeScreenState extends State<HomeScreen> {
                             top: 33.h, start: 16.h, end: 16.h, bottom: 14.h),
                         width: 343.w,
                         height: 186.h,
-                        decoration: BoxDecoration(
+                        decoration:const BoxDecoration(
                             image: DecorationImage(
                                 image: AssetImage('assets/images/searchbg.png'),
                                 fit: BoxFit.cover)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
-                              '\"Unlock the Beauty of Arabic:',
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.copyWith(
-                                      color: Colors.white, fontSize: 22.sp),
+                            FittedBox(
+                              child: Text(
+                                '\"Unlock the Beauty of Arabic:\nYour Gateway to Language\nMastery!\"',
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(
+                                        color: Colors.white, fontSize: 22.sp),
+                              ),
                             ),
-                            Text(
-                              'Your Gateway to Language',
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.copyWith(
-                                      color: Colors.white, fontSize: 22.sp),
-                            ),
-                            Text(
-                              'Mastery!\"',
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.copyWith(
-                                      color: Colors.white, fontSize: 22.sp),
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            Container(
-                              width: 311.w,
-                              height: 38.h,
-                              // child: TextField(
-                              //   controller: homeCubit.searchingController,
-                              //   decoration: InputDecoration(
-                              //       contentPadding: EdgeInsets.zero,
-                              //       fillColor: Colors.white,
-                              //       filled: true,
-                              //       focusedBorder: OutlineInputBorder(
-                              //         borderRadius: BorderRadius.circular(12.r),
-                              //       ),
-                              //       enabledBorder: OutlineInputBorder(
-                              //         borderRadius: BorderRadius.circular(12.r),
-                              //       ),
-                              //       prefixIcon: ImageIcon(
-                              //         AssetImage('assets/icons/search.png'),
-                              //       ),
-                              //       hintText: 'Search here',
-                              //       hintStyle: TextStyle(
-                              //           fontSize: 16.sp,
-                              //           color: Color(0xFF999999))),
-                              // ),
-                            )
                           ],
                         ),
                       ),

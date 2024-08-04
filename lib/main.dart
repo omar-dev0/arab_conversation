@@ -10,12 +10,14 @@ import 'package:arab_conversation/ui/theme/light_them.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'bloc_observer.dart';
 import 'firebase_options.dart';
 Widget? firstScreen;
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform);
   configureDependencies();
@@ -38,6 +40,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
