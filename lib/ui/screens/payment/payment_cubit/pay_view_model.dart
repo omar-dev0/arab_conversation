@@ -10,13 +10,13 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class PaymentViewModel extends Cubit<PaymentStatus>{
-  CourseRepo courseRepo;
-  AuthRepo authRepo;
+  final CourseRepo courseRepo;
+  final AuthRepo authRepo;
   final InAppPurchase _inAppPurchase = InAppPurchase.instance;
   late final List<Course> available = courseRepo.AvailableCourse;
   List<ProductDetails> products = [];
   StreamSubscription<List<PurchaseDetails>>? _subscription;
-  Set<String> pIds = {};
+  final Set<String> pIds = {};
   late final ProductDetailsResponse response;
   @factoryMethod
   PaymentViewModel(this.courseRepo , this.authRepo):super(InitStatePayment());

@@ -2,20 +2,21 @@ sealed class ProfileState {}
 
 class InitState extends ProfileState {}
 
-class EditProfile extends ProfileState {}
+class EditProfile extends ProfileState {
+
+  EditProfile();
+}
 
 class LoadingUpdateProfile extends ProfileState {}
 
 class ErrorUpdateProfile extends ProfileState {
-  String error;
+  final String error;
 
   ErrorUpdateProfile(this.error);
 }
 
 class SuccessUpdateProfile extends ProfileState {
-  String text;
-
+final String text;
   SuccessUpdateProfile(this.text);
 }
-
 class SignOut extends ProfileState {}

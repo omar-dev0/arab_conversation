@@ -18,7 +18,7 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
-  ForgetPasswordViewModel passwordViewModel =
+  final ForgetPasswordViewModel passwordViewModel =
       getIt.get<ForgetPasswordViewModel>();
 
   @override
@@ -43,7 +43,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     context,
                     icon: CircleAvatar(
                         backgroundColor: Theme.of(context).colorScheme.primary,
-                        child: ImageIcon(
+                        child: const ImageIcon(
                           AssetImage('assets/icons/email.png'),
                           color: Colors.white,
                         )),
@@ -52,7 +52,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       style: TextStyle(
                           fontSize: 18.sp, fontWeight: FontWeight.bold),
                     ),
-                    content: Text(
+                    content: const Text(
                       'We have send password recovery instruction to your email',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Color(0xFF7D848D), fontSize: 16),
@@ -76,7 +76,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         state.error,
                         textAlign: TextAlign.center,
                         style:
-                            TextStyle(color: Color(0xFF7D848D), fontSize: 16),
+                            const TextStyle(color: Color(0xFF7D848D), fontSize: 16),
                       ),
                       negativeText: 'Ok', negative: () {
                     Navigator.pop(context);
@@ -103,7 +103,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             fontWeight: null,
-                            color: Color(0xFF7D848D),
+                            color: const Color(0xFF7D848D),
                           ),
                     ),
                     Text(
@@ -111,7 +111,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             fontWeight: null,
-                            color: Color(0xFF7D848D),
+                            color: const Color(0xFF7D848D),
                           ),
                     ),
                     SizedBox(
@@ -125,7 +125,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         validator: passwordViewModel.validEmail,
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Color(0xFFEAEAEB),
+                          fillColor: const Color(0xFFEAEAEB),
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.circular(12.r)),

@@ -1,12 +1,11 @@
 import 'package:arab_conversation/data/model/course_item.dart';
 import 'package:arab_conversation/ui/shared_widgets/course_item_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PlayListBottomSheet extends StatelessWidget {
   List<CourseItem>? courseItem;
-  String courseName;
+  final String courseName;
   PlayListBottomSheet(
       {super.key, required this.courseItem, required this.courseName});
 

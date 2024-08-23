@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "647220625771",
+    "project_id": "arab-conversation",
+    "storage_bucket": "arab-conversation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647220625771:android:8ec29165cb79bbf59d4c2e",
+        "android_client_info": {
+          "package_name": "com.app.arab_conversation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647220625771-u0f9egeuue7im15korpgqrvu82fhd2fb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFofy5pGo0Ij60oxuHIUkJmm3f3k37ThA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647220625771-5fu5ksrucuc06vvouaqot1ml3pc5m417.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "647220625771-t0b032hdsvb5jggmounof9o1mgmt587q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.arabConversation.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647220625771:android:7da8f63d7fdc3bcb9d4c2e",
+        "android_client_info": {
+          "package_name": "com.example.arab_conversation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647220625771-k647jc6lr540mt2nalqkv63sjajn41v0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.arab_conversation",
+            "certificate_hash": "eed338a28767aa78fb468b5399f99ea106bd6298"
+          }
+        },
+        {
+          "client_id": "647220625771-u0f9egeuue7im15korpgqrvu82fhd2fb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFofy5pGo0Ij60oxuHIUkJmm3f3k37ThA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647220625771-5fu5ksrucuc06vvouaqot1ml3pc5m417.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "647220625771-t0b032hdsvb5jggmounof9o1mgmt587q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.arabConversation.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

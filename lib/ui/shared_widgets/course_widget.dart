@@ -1,14 +1,12 @@
 import 'package:arab_conversation/data/model/course.dart';
 import 'package:arab_conversation/ui/screens/course_ccontent/course_content.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CourseWidget extends StatefulWidget {
-  Course course;
-  CourseWidget({super.key, required this.course});
+  final Course course;
+  const CourseWidget({super.key, required this.course});
 
   @override
   State<CourseWidget> createState() => _CourseWidgetState();
@@ -50,7 +48,7 @@ class _CourseWidgetState extends State<CourseWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.secondary,
                         borderRadius: BorderRadius.circular(8.r),
@@ -61,7 +59,7 @@ class _CourseWidgetState extends State<CourseWidget> {
                             fontSize: 14.sp, color: Colors.white),
                       ),
                     ),
-                    Expanded(
+                    const Expanded(
                         child: SizedBox(
                       width: double.infinity,
                     )),

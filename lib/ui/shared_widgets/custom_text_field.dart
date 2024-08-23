@@ -4,16 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 typedef valid = String? Function(String?);
 
 class CustomTextFormField extends StatelessWidget {
-  Widget? icon;
-  String? hint;
-  String? label;
-  valid? validFunction;
-  bool? isPassword;
-  double? top;
-  double? bottom;
-  TextEditingController? controller;
+  final Widget? icon;
+  final String? hint;
+  final String? label;
+  final valid? validFunction;
+  final bool? isPassword;
+  final double? top;
+  final double? bottom;
+  final TextEditingController? controller;
 
-  CustomTextFormField(
+  const CustomTextFormField(
       {super.key,
       this.icon,
       this.hint,
@@ -41,7 +41,7 @@ class CustomTextFormField extends StatelessWidget {
             hintStyle: Theme.of(context)
                 .textTheme
                 .labelSmall
-                ?.copyWith(color: Color(0xFF808080), fontSize: 12),
+                ?.copyWith(color: const Color(0xFF808080), fontSize: 12),
             labelText: label,
             labelStyle: Theme.of(context)
                 .textTheme

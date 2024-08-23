@@ -34,13 +34,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircularProgressIndicator(),
+                    const CircularProgressIndicator(),
                     SizedBox(
                       width: 10.w,
                     ),
                     Text(
                       state.text,
-                      style: TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 20),
                     ),
                   ],
                 ),
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             FittedBox(
                               child: Text(
-                                '\"Unlock the Beauty of Arabic:\nYour Gateway to Language\nMastery!\"',
+                                '"Unlock the Beauty of Arabic:\nYour Gateway to Language\nMastery!"',
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context)
                                     .textTheme
@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               );
             }
-            return Column(
+            return const Column(
             );
           },
         ));

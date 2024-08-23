@@ -1,34 +1,32 @@
 import 'package:arab_conversation/data/dao/user_dao.dart';
 import 'package:arab_conversation/data/model/course.dart';
 import 'package:arab_conversation/data/model/course_item.dart';
-import 'package:arab_conversation/di/di.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
 @injectable
 class CourseDao {
-  FirebaseStorage storage = FirebaseStorage.instance;
-  UserDao appUser;
+  final FirebaseStorage storage = FirebaseStorage.instance;
+  final UserDao appUser;
   @factoryMethod CourseDao(this.appUser);
   Future<List<Course>> getAppCourses() async {
     var coursesRef = storage.ref().child('courses/');
-    ListResult coursesStorage = await coursesRef.listAll();
-    List<Course> courses = [];
+    final ListResult coursesStorage = await coursesRef.listAll();
+    final List<Course> courses = [];
     await Future.forEach(coursesStorage.prefixes, (folder) async {
-      String price = folder.name.substring(folder.name.indexOf('#')+1);
-      String name = folder.name.substring(0 , folder.name.indexOf('#'));
-      Course course = Course(name: name, fullPath: folder.fullPath , price: price);
+      final String price = folder.name.substring(folder.name.indexOf('#')+1);
+      final String name = folder.name.substring(0 , folder.name.indexOf('#'));
+      final Course course = Course(name: name, fullPath: folder.fullPath , price: price);
       courses.add(course);
     });
     return courses;
   }
 
   Future<List<CourseItem>> getCourseContent(String folderPath) async {
-    List<CourseItem> courseChapters = [];
-    var courseFolder = storage.ref().child('$folderPath/');
+    final List<CourseItem> courseChapters = [];
+    final courseFolder = storage.ref().child('$folderPath/');
     ListResult courseContent = await courseFolder.listAll();
     for (var courseChapter in courseContent.items) {
       courseChapters.add(CourseItem(
@@ -52,15 +50,15 @@ class CourseDao {
   }
 
   Future<void> addToPayCourse(Course course, String userId) {
-    var courseCollection = getCoursesCollection(userId);
-    var courseDoc = courseCollection.doc(course.name);
+    final courseCollection = getCoursesCollection(userId);
+    final courseDoc = courseCollection.doc(course.name);
     return courseDoc.set(course);
   }
 
   Future<List<Course>> getPaidCourse(String userId) async {
     List<Course> paidCourses = [];
     CollectionReference<Course> courses = getCoursesCollection(userId);
-   var coursesSnapshot =  await courses.get();
+   final coursesSnapshot =  await courses.get();
    List<QueryDocumentSnapshot<Course>> coursesQueryList = coursesSnapshot.docs;
     for(QueryDocumentSnapshot<Course> course in coursesQueryList)
       {
@@ -80,7 +78,7 @@ class CourseDao {
   Future<List<Course>> getAvailableCourses() async {
     List<Course> availableCoursesList = [];
     CollectionReference<Course> courses = availableCourses;
-    var coursesSnapshot =  await courses.get();
+    final coursesSnapshot =  await courses.get();
     List<QueryDocumentSnapshot<Course>> coursesQueryList = coursesSnapshot.docs;
     for(QueryDocumentSnapshot<Course> course in coursesQueryList)
     {

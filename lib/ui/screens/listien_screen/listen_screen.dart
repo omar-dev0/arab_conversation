@@ -14,12 +14,12 @@ import 'package:rxdart/rxdart.dart';
 
 class ListenScreen extends StatefulWidget {
   static const String route = "listenScreen";
-  CourseItem? chapter;
-  String? name;
-  List<CourseItem>? chapters;
-  int? index;
-  bool clicked = false;
-  ListenScreen({super.key, this.chapter, this.name, this.chapters, this.index});
+  final CourseItem? chapter;
+  final String? name;
+  final List<CourseItem>? chapters;
+  final int? index;
+   bool clicked = false;
+   ListenScreen({super.key, this.chapter, this.name, this.chapters, this.index});
 
   @override
   State<ListenScreen> createState() => _ListenScreenState();
@@ -52,7 +52,7 @@ class _ListenScreenState extends State<ListenScreen> {
         builder: (context, state) {
           if (state is SuccessPlay) {
             return Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('assets/images/listen_bg.png'),
                       fit: BoxFit.cover)),
@@ -102,9 +102,9 @@ class _ListenScreenState extends State<ListenScreen> {
                               final positionData = snapshot.data;
                               return ProgressBar(
                                 barHeight: 4.h,
-                                baseBarColor: Color(0xFF1E1E1E),
+                                baseBarColor: const Color(0xFF1E1E1E),
                                 bufferedBarColor: Colors.transparent,
-                                progressBarColor: Color(0xFF5C9797),
+                                progressBarColor: const Color(0xFF5C9797),
                                 thumbColor: Colors.transparent,
                                 timeLabelTextStyle: GoogleFonts.roboto(
                                     color: Colors.white, fontSize: 12.sp),
@@ -129,14 +129,15 @@ class _ListenScreenState extends State<ListenScreen> {
                                         .setLoopMode(LoopMode.all);
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
-                                            content: Container(
+                                            content: SizedBox(
                                                 height: 20.h,
                                                 child: Text(
                                                   'loop mode on',
                                                   style: TextStyle(
                                                       fontSize: 15.sp),
                                                 )
-                                            )
+                                            ),
+                                      duration: const Duration(milliseconds: 500),
                                     )
                                     );
                                     widget.clicked = true;
@@ -145,6 +146,7 @@ class _ListenScreenState extends State<ListenScreen> {
                                         .setLoopMode(LoopMode.off);
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
+                                      duration: const Duration(milliseconds: 500),
                                             content: Text(
                                       'loop mode off',
                                       style: TextStyle(fontSize: 15.sp),
@@ -154,7 +156,7 @@ class _ListenScreenState extends State<ListenScreen> {
                                     widget.clicked = false;
                                   }
                                 },
-                                child: ImageIcon(
+                                child: const ImageIcon(
                                   AssetImage('assets/icons/rep.png'),
                                   color: Colors.white,
                                   size: 30,
@@ -165,21 +167,24 @@ class _ListenScreenState extends State<ListenScreen> {
                               ),
                               InkWell(
                                 onTap: () async {
-                                  if (homeCubit.chapterIndex - 1 <= -1) {
-                                    homeCubit.chapterIndex =
-                                        widget.chapters!.length - 1;
-                                    await homeCubit.getUrl(widget.chapters?[
-                                            homeCubit.chapterIndex] ??
-                                        CourseItem());
-                                  } else {
-                                    homeCubit.chapterIndex =
-                                        homeCubit.chapterIndex - 1;
-                                    await homeCubit.getUrl(widget.chapters?[
-                                            homeCubit.chapterIndex] ??
-                                        CourseItem());
-                                  }
+                                  // if (homeCubit.chapterIndex - 1 <= -1) {
+                                  //   homeCubit.chapterIndex =
+                                  //       widget.chapters!.length - 1;
+                                  //   await homeCubit.getUrl(widget.chapters?[
+                                  //           homeCubit.chapterIndex] ??
+                                  //       CourseItem());
+                                  // } else {
+                                  //   homeCubit.chapterIndex =
+                                  //       homeCubit.chapterIndex - 1;
+                                  //   await homeCubit.getUrl(widget.chapters?[
+                                  //           homeCubit.chapterIndex] ??
+                                  //       CourseItem());
+                                  // }
+                                  Duration currentDuration = homeCubit.audioPlayer.position;
+                                  currentDuration-= const Duration(seconds: 5);
+                                  homeCubit.audioPlayer.seek(currentDuration);
                                 },
-                                child: ImageIcon(
+                                child: const ImageIcon(
                                   AssetImage('assets/icons/back.png'),
                                   color: Colors.white,
                                   size: 30,
@@ -194,21 +199,25 @@ class _ListenScreenState extends State<ListenScreen> {
                               ),
                               InkWell(
                                 onTap: () async {
-                                  if (homeCubit.chapterIndex + 1 ==
-                                      widget.chapters?.length) {
-                                    homeCubit.chapterIndex = 0;
-                                    await homeCubit.getUrl(widget.chapters?[
-                                            homeCubit.chapterIndex] ??
-                                        CourseItem());
-                                  } else {
-                                    homeCubit.chapterIndex =
-                                        homeCubit.chapterIndex! + 1;
-                                    await homeCubit.getUrl(widget.chapters?[
-                                            homeCubit.chapterIndex] ??
-                                        CourseItem());
-                                  }
+                                  // if (homeCubit.chapterIndex + 1 ==
+                                  //     widget.chapters?.length) {
+                                  //   homeCubit.chapterIndex = 0;
+                                  //   await homeCubit.getUrl(widget.chapters?[
+                                  //           homeCubit.chapterIndex] ??
+                                  //       CourseItem());
+                                  // } else {
+                                  //   homeCubit.chapterIndex =
+                                  //       homeCubit.chapterIndex! + 1;
+                                  //   await homeCubit.getUrl(widget.chapters?[
+                                  //           homeCubit.chapterIndex] ??
+                                  //       CourseItem());
+                                  // }
+
+                                  Duration currentPosition = homeCubit.audioPlayer.position;
+                                  currentPosition+= const Duration(seconds: 5);
+                                  homeCubit.audioPlayer.seek(currentPosition);
                                 },
-                                child: ImageIcon(
+                                child: const ImageIcon(
                                   AssetImage('assets/icons/nex.png'),
                                   color: Colors.white,
                                   size: 30,
@@ -225,7 +234,7 @@ class _ListenScreenState extends State<ListenScreen> {
                                             courseItem: widget.chapters,
                                           ));
                                 },
-                                child: ImageIcon(
+                                child: const ImageIcon(
                                   AssetImage('assets/icons/list.png'),
                                   color: Colors.white,
                                   size: 30,
@@ -241,7 +250,7 @@ class _ListenScreenState extends State<ListenScreen> {
               ),
             );
           }
-          return Scaffold();
+          return const Scaffold();
         },
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:arab_conversation/data/model/course.dart';
-import 'package:arab_conversation/data/model/course_item.dart';
 import 'package:arab_conversation/di/di.dart';
 import 'package:arab_conversation/ui/screens/tabs/home_screen/home_cubit/home_cubit.dart';
 import 'package:arab_conversation/ui/screens/tabs/home_screen/home_cubit/home_state.dart';
@@ -11,14 +10,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CourseContent extends StatefulWidget {
   static const String route = "courseContent";
 
-  CourseContent({super.key});
+  const CourseContent({super.key});
 
   @override
   State<CourseContent> createState() => _CourseContentState();
 }
 
 class _CourseContentState extends State<CourseContent> {
-  Course? course;
+    Course? course;
 
   HomeViewModel homeCubit = getIt.get<HomeViewModel>();
 
@@ -91,13 +90,13 @@ class _CourseContentState extends State<CourseContent> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CircularProgressIndicator(),
+                            const CircularProgressIndicator(),
                             SizedBox(
                               width: 10.w,
                             ),
                             Text(
                               state.text,
-                              style: TextStyle(fontSize: 20),
+                              style: const TextStyle(fontSize: 20),
                             ),
                           ],
                         ),

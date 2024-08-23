@@ -5,13 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@singleton
 @injectable
 class ProfileViewModel extends Cubit<ProfileState> {
-  AuthRepo authRepo;
-  TextEditingController email = TextEditingController();
-  TextEditingController firstName = TextEditingController();
-  TextEditingController lastName = TextEditingController();
+  final AuthRepo authRepo;
+  final TextEditingController email = TextEditingController();
+  final TextEditingController firstName = TextEditingController();
+  final TextEditingController lastName = TextEditingController();
 
   @factoryMethod
   ProfileViewModel(this.authRepo) : super(InitState());
@@ -19,19 +18,24 @@ class ProfileViewModel extends Cubit<ProfileState> {
   User get user => authRepo.get();
 
   void togelScreens() {
-    email.text = user.email!;
-    List<String> name = user.name!.split(' ');
+    final List<String> name = user.name!.split(' ');
     if (name.length > 1) {
       firstName.text = name[0];
       lastName.text = name[1];
+      email.text = user.email!;
+      emit(EditProfile());
+    } else {
+      firstName.text = name[0];
+      lastName.text = '';
+      email.text = user.email!;
+      emit(EditProfile());
     }
-    emit(EditProfile());
   }
 
   Future<void> updateUser() async {
     emit(LoadingUpdateProfile());
     try {
-      String userName = firstName.text + ' ' + lastName.text;
+      final String userName = '${firstName.text} ${lastName.text}';
       await authRepo.updateUser(user.id!, {'name': userName});
       user.name = userName;
       emit(SuccessUpdateProfile('update user successfully'));

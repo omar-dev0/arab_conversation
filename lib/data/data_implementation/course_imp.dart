@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: CourseDataSource)
 class CourseDataSourceImp extends CourseDataSource {
-  CourseDao courseDao;
+  final CourseDao courseDao;
 
   @factoryMethod
   CourseDataSourceImp(this.courseDao);

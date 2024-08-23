@@ -3,6 +3,7 @@ import 'package:arab_conversation/ui/dialogs/dialog.dart';
 import 'package:arab_conversation/ui/screens/authintication_screens/login/login.dart';
 import 'package:arab_conversation/ui/screens/authintication_screens/register/register_cubit/register_cubit.dart';
 import 'package:arab_conversation/ui/screens/authintication_screens/register/register_cubit/register_state.dart';
+import 'package:arab_conversation/ui/screens/tabs/home.dart';
 import 'package:arab_conversation/ui/shared_widgets/custom_button.dart';
 import 'package:arab_conversation/ui/shared_widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Registration extends StatefulWidget {
   static const String route = 'registerScreen';
 
-  Registration({super.key});
+  const Registration({super.key});
 
   @override
   State<Registration> createState() => _RegistrationState();
@@ -46,13 +47,13 @@ class _RegistrationState extends State<Registration> {
                     if (state is Loading) {
                       loadingDialog(context);
                     }
-                    if (state is Success) {
+                    else if (state is Success) {
                       closeDialog(context);
                       showCustomDialog(context,
                           icon: CircleAvatar(
                               backgroundColor:
                                   Theme.of(context).colorScheme.primary,
-                              child: ImageIcon(
+                              child: const ImageIcon(
                                 AssetImage('assets/icons/email.png'),
                                 color: Colors.white,
                               )),
@@ -61,7 +62,7 @@ class _RegistrationState extends State<Registration> {
                             style: TextStyle(
                                 fontSize: 18.sp, fontWeight: FontWeight.bold),
                           ),
-                          content: Text(
+                          content: const Text(
                             'We send email to your account to verify your account',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -72,7 +73,7 @@ class _RegistrationState extends State<Registration> {
                             context, LoginScreen.route);
                       });
                     }
-                    if (state is Error) {
+                    else if (state is Error) {
                       closeDialog(context);
                       showCustomDialog(context,
                           icon: Icon(
@@ -83,10 +84,14 @@ class _RegistrationState extends State<Registration> {
                           content: Text(
                             state.error,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Color(0xFF7D848D), fontSize: 16),
                           ));
                     }
+                    else if (state is SuccessWithGoogle)
+                      {
+                        Navigator.pushReplacementNamed(context, Home.route);
+                      }
                   },
                   builder: (context, state) => Padding(
                     padding: EdgeInsetsDirectional.only(
@@ -172,7 +177,9 @@ class _RegistrationState extends State<Registration> {
                             height: 24.h,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              registerViewModel.loginWithGoogle();
+                            },
                             child: Container(
                               width: 320.w,
                               padding: EdgeInsetsDirectional.symmetric(

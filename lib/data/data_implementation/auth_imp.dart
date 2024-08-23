@@ -5,12 +5,13 @@ import 'package:arab_conversation/data/data_contract/auth_contract.dart';
 import 'package:arab_conversation/data/model/user.dart' as userApp;
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AuthSystem)
 class AuthSystemImp extends AuthSystem {
-  UserDao userDao;
-  var fireUser;
+  final UserDao userDao;
+    UserCredential? fireUser;
 
   @factoryMethod
   AuthSystemImp(this.userDao);
@@ -20,8 +21,8 @@ class AuthSystemImp extends AuthSystem {
     try {
       fireUser = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: user.email!, password: password);
-      user.id = fireUser.user?.uid;
-      fireUser.user?.sendEmailVerification();
+      user.id = fireUser?.user?.uid;
+      fireUser?.user?.sendEmailVerification();
       await userDao.addUser(user);
     } on FirebaseException catch (e) {
       return e.code;
@@ -60,8 +61,9 @@ class AuthSystemImp extends AuthSystem {
   Future<userApp.User?> isSigneIn() async {
     if (FirebaseAuth.instance.currentUser != null) {
       return userDao.getUser(FirebaseAuth.instance.currentUser!.uid);
-    } else
+    } else {
       return null;
+    }
   }
 
   @override
@@ -74,5 +76,29 @@ class AuthSystemImp extends AuthSystem {
   Future<void> updateUser(String id, Map<String, dynamic> updatedUser) async {
     await userDao.updateUser(id, updatedUser);
     return;
+  }
+
+  @override
+  Future<Either<String, userApp.User?>> loginWithGoogle()async{
+    final GoogleSignInAccount? user = await GoogleSignIn().signIn();
+    if(user == null)
+      {
+        return const Left('Some thing went wrong try again');
+      }
+    final GoogleSignInAuthentication googleAuth = await user.authentication;
+    final AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+    fireUser = userCredential;
+    userApp.User appUser = userApp.User(
+        name: fireUser?.user?.displayName,
+        email: fireUser?.user?.email,
+        id: fireUser?.user?.uid
+    );
+    await userDao.addUser(appUser);
+    return  Right(appUser);
+
   }
 }

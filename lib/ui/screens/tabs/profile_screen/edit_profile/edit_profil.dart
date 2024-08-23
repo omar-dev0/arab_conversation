@@ -1,20 +1,20 @@
-import 'package:arab_conversation/di/di.dart';
 import 'package:arab_conversation/ui/screens/tabs/profile_screen/profile_cubit/profile_view_model.dart';
 import 'package:arab_conversation/ui/shared_widgets/profile_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditUserProfile extends StatefulWidget {
-  const EditUserProfile({super.key});
+
+   const EditUserProfile({super.key });
 
   @override
   State<EditUserProfile> createState() => _EditUserProfileState();
 }
 
 class _EditUserProfileState extends State<EditUserProfile> {
-  ProfileViewModel profileViewModel = getIt.get<ProfileViewModel>();
-
+  late final  ProfileViewModel profileViewModel = BlocProvider.of<ProfileViewModel>(context);
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -22,7 +22,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
         alignment: Alignment.bottomCenter,
         width: 375.w,
         height: 81.h,
-        color: Color(0xFFECEDED),
+        color: const Color(0xFFECEDED),
         padding: EdgeInsets.only(bottom: 8.h),
         child: Row(
           children: [
@@ -30,21 +30,21 @@ class _EditUserProfileState extends State<EditUserProfile> {
               onPressed: () {
                 profileViewModel.backToProfile();
               },
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               color: Colors.black,
             ),
-            Expanded(
+            const Expanded(
                 child: SizedBox(
               width: double.infinity,
             )),
-            Text(
+            const Text(
               'Edit Profile',
               style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
             ),
-            Expanded(
+            const Expanded(
                 child: SizedBox(
               width: double.infinity,
             )),
@@ -64,7 +64,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
       ),
       CircleAvatar(
         radius: 48.h,
-        backgroundImage: AssetImage('assets/images/profile.jpeg'),
+        backgroundImage: const AssetImage('assets/images/profile.jpeg'),
       ),
       SizedBox(
         height: 8.h,
@@ -106,7 +106,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
             SizedBox(
               height: 12.h,
             ),
-            ProfileTextField(controller: profileViewModel.lastName),
+            ProfileTextField(controller:profileViewModel.lastName),
             SizedBox(
               height: 16.h,
             ),
@@ -121,7 +121,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
               height: 12.h,
             ),
             ProfileTextField(
-              controller: profileViewModel.email,
+              controller:profileViewModel.email,
               isEnabled: false,
             ),
           ],

@@ -19,7 +19,7 @@ void showCustomDialog(
         },
         child: Text(
           positiveText,
-          style: TextStyle(fontSize: 15),
+          style: const TextStyle(fontSize: 15),
         )));
   }
   if (negativeText != null) {
@@ -29,7 +29,7 @@ void showCustomDialog(
         },
         child: Text(
           negativeText,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 15,
             color: Colors.red,
           ),

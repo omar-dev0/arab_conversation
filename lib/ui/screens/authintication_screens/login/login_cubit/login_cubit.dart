@@ -7,11 +7,11 @@ import 'package:injectable/injectable.dart';
 @injectable
 @singleton
 class LoginViewModel extends Cubit<LoginStates> {
-  TextEditingController? email = TextEditingController();
-  TextEditingController? password = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  IconData passwordEye = Icons.visibility;
-  bool showPassword = false;
+  final TextEditingController? email = TextEditingController();
+  final TextEditingController? password = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+   IconData passwordEye = Icons.visibility;
+   bool showPassword = false;
   AuthRepo repo;
 
   @factoryMethod
@@ -60,6 +60,19 @@ class LoginViewModel extends Cubit<LoginStates> {
       } else {
         emit(Success());
       }
+    }
+  }
+
+  void loginWithGoogle() async{
+    emit(Loading());
+    final String? error = await repo.loginWithGoogle();
+    if(error != null)
+      {
+        emit(Error(error));
+      }
+    else
+    {
+      emit(Success());
     }
   }
 }

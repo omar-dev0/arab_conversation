@@ -9,7 +9,10 @@ abstract class AuthRepo {
 
   Future<bool> isSigneIn();
 
+Future<String?> loginWithGoogle();
+
   Future<void> signOut();
+
   User get();
 
   Future<void> updateUser(String id, Map<String, dynamic> updatedUser);

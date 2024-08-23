@@ -7,7 +7,7 @@ class Loading extends LoginStates {}
 class Success extends LoginStates {}
 
 class Error extends LoginStates {
-  String error;
+  final String error;
 
   Error(this.error);
 }

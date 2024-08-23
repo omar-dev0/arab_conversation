@@ -15,7 +15,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int index = 0;
-  List<Widget> screens = [HomeScreen(), Profile()];
+  List<Widget> screens = [const HomeScreen(),  Profile()];
   @override
   Widget build(BuildContext context) {
     List<BottomNavigationBarItem> items = [
@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
             child: Column(
               children: [
                 ImageIcon(
-                  AssetImage('assets/icons/home.png'),
+                  const AssetImage('assets/icons/home.png'),
                   color: index == 0 ? Colors.white : Colors.black,
                   size: 24,
                 ),
@@ -55,7 +55,7 @@ class _HomeState extends State<Home> {
             padding: EdgeInsetsDirectional.only(
                 start: 16.w, end: 16.w, top: 4.h, bottom: 4.h),
             decoration: BoxDecoration(
-              color: index == 2
+              color: index == 1
                   ? Theme.of(context).colorScheme.secondary
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(20.r),
@@ -63,8 +63,8 @@ class _HomeState extends State<Home> {
             child: Column(
               children: [
                 ImageIcon(
-                  AssetImage('assets/icons/person.png'),
-                  color: index == 2 ? Colors.white : Colors.black,
+                  const AssetImage('assets/icons/person.png'),
+                  color: index == 1 ? Colors.white : Colors.black,
                   size: 24,
                 ),
                 Text(
@@ -72,14 +72,14 @@ class _HomeState extends State<Home> {
                   style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
-                      color: index == 2 ? Colors.white : Colors.black),
+                      color: index == 1 ? Colors.white : Colors.black),
                 ),
               ],
             ),
           )),
     ];
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/app_screen.png'),
               fit: BoxFit.cover)),

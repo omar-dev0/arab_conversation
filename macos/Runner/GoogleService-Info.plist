@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>647220625771-t8bo7o4sjd27q7k5ocidjv5rmg4nvgpm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.647220625771-t8bo7o4sjd27q7k5ocidjv5rmg4nvgpm</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>647220625771-k647jc6lr540mt2nalqkv63sjajn41v0.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCkj-83hzb46XKhoh46tO2pZZ9nh7__MGc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>647220625771</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.arabConversation</string>
+	<key>PROJECT_ID</key>
+	<string>arab-conversation</string>
+	<key>STORAGE_BUCKET</key>
+	<string>arab-conversation.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:647220625771:ios:e7266b375e912ad19d4c2e</string>
+</dict>
+</plist>

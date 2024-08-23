@@ -11,9 +11,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Profile extends StatelessWidget {
-  Profile({super.key});
+   Profile({super.key});
 
-  ProfileViewModel profileViewModel = getIt.get<ProfileViewModel>();
+  final ProfileViewModel profileViewModel = getIt.get<ProfileViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class Profile extends StatelessWidget {
             content: Text(
               state.error,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Color(0xFF7D848D), fontSize: 16),
+              style: const TextStyle(color: Color(0xFF7D848D), fontSize: 16),
             ),
             negative: () {
               Navigator.pop(context);
@@ -41,12 +41,12 @@ class Profile extends StatelessWidget {
             negativeText: 'ok',
           );
         }
-        if (state is SuccessUpdateProfile) {
+        else if (state is SuccessUpdateProfile) {
           closeDialog(context);
           showCustomDialog(context,
               icon: CircleAvatar(
                   backgroundColor: Theme.of(context).colorScheme.primary,
-                  child: ImageIcon(
+                  child: const ImageIcon(
                     AssetImage('assets/icons/email.png'),
                     color: Colors.white,
                   )),
@@ -58,11 +58,13 @@ class Profile extends StatelessWidget {
             Navigator.pop(context);
           });
         }
-        if (state is LoadingUpdateProfile) {
+        else if (state is LoadingUpdateProfile) {
           loadingDialog(context);
         }
-        if (state is SignOut)
-          Navigator.pushReplacementNamed(context, LoginScreen.route);
+        else if (state is SignOut) {
+          Navigator.of(context).pushNamedAndRemoveUntil(LoginScreen.route, (Route route) => false);
+
+        }
       }, builder: (context, state) {
         if (state is InitState) {
           return Column(
@@ -72,9 +74,9 @@ class Profile extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 width: 375.w,
                 height: 81.h,
-                color: Color(0xFFECEDED),
+                color: const Color(0xFFECEDED),
                 padding: EdgeInsets.only(bottom: 8.h),
-                child: Text(
+                child: const Text(
                   'Profile',
                   style: TextStyle(
                       color: Colors.black,
@@ -87,7 +89,7 @@ class Profile extends StatelessWidget {
               ),
               CircleAvatar(
                 radius: 48.h,
-                backgroundImage: AssetImage('assets/images/profile.jpeg'),
+                backgroundImage: const AssetImage('assets/images/profile.jpeg'),
               ),
               SizedBox(
                 height: 8.h,
@@ -102,7 +104,7 @@ class Profile extends StatelessWidget {
               Text(
                 profileViewModel.user.email!,
                 style: GoogleFonts.roboto(
-                    fontSize: 14.sp, color: Color(0xFF7D848D)),
+                    fontSize: 14.sp, color: const Color(0xFF7D848D)),
               ),
               SizedBox(
                 height: 60.h,
@@ -123,10 +125,16 @@ class Profile extends StatelessWidget {
             ],
           );
         }
-        if (state is EditProfile || state is SuccessUpdateProfile) {
-          return EditUserProfile();
-        } else
-          return Column();
+        else if (state is EditProfile ) {
+          return  EditUserProfile();
+        }
+        else if (state is SuccessUpdateProfile)
+          {
+            return  EditUserProfile();
+          }
+        else {
+          return const Column();
+        }
       }),
     );
   }

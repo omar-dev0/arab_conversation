@@ -8,15 +8,15 @@ import 'package:injectable/injectable.dart';
 @injectable
 @singleton
 class RegisterViewModel extends Cubit<RegisterStates> {
-  TextEditingController name = TextEditingController();
-  TextEditingController phone = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-  TextEditingController confirmPassword = TextEditingController();
+  final TextEditingController name = TextEditingController();
+  final TextEditingController phone = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  final TextEditingController confirmPassword = TextEditingController();
   IconData passwordEye = Icons.visibility;
   bool showPassword = false;
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  AuthRepo repo;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final AuthRepo repo;
 
   @factoryMethod
   RegisterViewModel(this.repo) : super(InitState());
@@ -75,7 +75,7 @@ class RegisterViewModel extends Cubit<RegisterStates> {
     if (formKey.currentState!.validate()) {
       emit(Loading());
 
-      String? result = await repo.registration(
+      final String? result = await repo.registration(
           User(name: name.text, email: email.text), password.text);
       if (result != null) {
         emit(Error(result));
@@ -84,4 +84,17 @@ class RegisterViewModel extends Cubit<RegisterStates> {
       }
     }
   }
+  void loginWithGoogle() async{
+    emit(Loading());
+    final String? error = await repo.loginWithGoogle();
+    if(error != null)
+    {
+      emit(Error(error));
+    }
+    else
+    {
+      emit(SuccessWithGoogle());
+    }
+  }
+
 }

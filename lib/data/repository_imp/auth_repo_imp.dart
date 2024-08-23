@@ -7,8 +7,8 @@ import 'package:injectable/injectable.dart';
 @Singleton(as: AuthRepo)
 @Injectable(as: AuthRepo)
 class AuthRepoImp extends AuthRepo {
-  AuthSystem authSystem;
-  User? user;
+  final AuthSystem authSystem;
+   User? user;
 
   @factoryMethod
   AuthRepoImp(this.authSystem);
@@ -53,9 +53,25 @@ class AuthRepoImp extends AuthRepo {
     user = null;
   }
 
+  @override
   Future<void> updateUser(String id, Map<String, dynamic> updatedUser) async {
     user?.name = updatedUser['name'];
     await authSystem.updateUser(id, updatedUser);
     return;
+  }
+
+  @override
+  Future<String?> loginWithGoogle()async{
+    Either<String? , User?> result = await (authSystem.loginWithGoogle());
+    if(result.isRight())
+      {
+        user = result.fold((l) => null, (r) => r);
+      }
+    else
+      {
+        return result.fold((l) => l, (r) => null);
+      }
+    return null;
+
   }
 }

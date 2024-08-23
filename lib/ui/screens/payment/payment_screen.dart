@@ -3,9 +3,7 @@ import 'package:arab_conversation/ui/screens/payment/payment_cubit/pay_view_mode
 import 'package:arab_conversation/ui/screens/payment/payment_cubit/payment_status.dart';
 import 'package:arab_conversation/ui/shared_widgets/course_item_widget.dart';
 import 'package:arab_conversation/ui/shared_widgets/custom_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
@@ -14,9 +12,9 @@ import '../../../data/model/course.dart';
 
 class PaymentScreen extends StatelessWidget {
   static const String route = "payment";
-  Course course;
-   PaymentScreen({super.key ,required this.course});
-   PaymentViewModel payment = getIt.get<PaymentViewModel>();
+  final Course course;
+    PaymentScreen({super.key ,required this.course});
+   final PaymentViewModel payment = getIt.get<PaymentViewModel>();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -29,7 +27,7 @@ class PaymentScreen extends StatelessWidget {
             }
         },
         builder: (context , status)=> Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/images/app_screen.png'),
                   fit: BoxFit.cover
@@ -38,20 +36,20 @@ class PaymentScreen extends StatelessWidget {
           child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
-              backgroundColor: Color(0xFFECEDED),
+              backgroundColor: const Color(0xFFECEDED),
               title: Text(
                 'Payment' ,
                 style:Theme.of(context).textTheme.labelMedium?.copyWith(fontSize: 20.sp) ,),
               centerTitle: true,
             ),
             body: Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
                   CourseItemWidget(courseItem: null , courseName:course.name ?? "" , index: 1 , isPayment: true,),
-                  Spacer(),
+                  const Spacer(),
                   Padding(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -69,8 +67,6 @@ class PaymentScreen extends StatelessWidget {
                   CustomButton(text: 'Payment', onPress: () async{
                     for(ProductDetails product in payment.products)
                       {
-                        print('${product.title}');
-                        print(course.name);
                         if(product.title.toLowerCase().contains(course.name!.toLowerCase()))
                           {
                              payment.buyProduct(product);
@@ -78,7 +74,7 @@ class PaymentScreen extends StatelessWidget {
                           }
                       }
                   }),
-                  Padding(padding: EdgeInsets.only(bottom: 20)),
+                  const Padding(padding: EdgeInsets.only(bottom: 20)),
                 ],
 
               ),

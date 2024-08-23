@@ -10,10 +10,9 @@ import 'package:just_audio/just_audio.dart';
 
 @injectable
 class HomeViewModel extends Cubit<HomeStates> {
-  AuthRepo authRepo;
-  CourseRepo courseRepo;
-  TextEditingController searchingController = TextEditingController();
-  late String chapterUrl;
+  final AuthRepo authRepo;
+  final CourseRepo courseRepo;
+  late final String chapterUrl;
   AudioPlayer audioPlayer = AudioPlayer();
   int chapterIndex = 0;
   @factoryMethod
@@ -32,7 +31,7 @@ class HomeViewModel extends Cubit<HomeStates> {
   Future<void> getCourseContent(String fullPath) async {
     emit(HomeLoadingState('Loading...'));
     await courseRepo.getCourseContent(fullPath);
-    late int check = courseRepo.chapters.first.name?.indexOf(".") ?? 0;
+    late final int check = courseRepo.chapters.first.name?.indexOf(".") ?? 0;
     for (var element in courseRepo.chapters) {
       if (check != -1) {
         element.name =
@@ -42,7 +41,7 @@ class HomeViewModel extends Cubit<HomeStates> {
       }
     }
     courseRepo.chapters.sort((a, b) {
-      String regex = r"Chapter (\d+)";
+      const String regex = r"Chapter (\d+)";
       if (a.name?.contains('Opening') ?? false) {
         return -1;
       } else if (b.name?.contains('Opening') ?? false) {
@@ -50,9 +49,9 @@ class HomeViewModel extends Cubit<HomeStates> {
       } else {
         String aName = a.name ?? "";
         String bName = b.name ?? "";
-        var chapterNumberA =
+        final int chapterNumberA =
             int.parse(RegExp(regex).firstMatch(aName)?.group(1) ?? "");
-        var chapterNumberB =
+        final int chapterNumberB =
             int.parse(RegExp(regex).firstMatch(bName)?.group(1) ?? "");
         return chapterNumberA.compareTo(chapterNumberB);
       }
@@ -61,7 +60,7 @@ class HomeViewModel extends Cubit<HomeStates> {
   }
 
   Future<void> getUrl(CourseItem courseItem , [int? index]) async {
-    String path = courseItem.fullPath ?? "";
+   final String path = courseItem.fullPath ?? "";
      chapterUrl = await courseRepo.getUrl(path);
      audioPlayer.setUrl(chapterUrl);
      if(index != null)

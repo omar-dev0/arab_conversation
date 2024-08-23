@@ -6,8 +6,8 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
-  TextEditingController email = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final TextEditingController email = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AuthRepo repo;
 
   @factoryMethod
@@ -29,7 +29,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   Future<void> resetPassword() async {
     if (formKey.currentState!.validate()) {
       emit(Loading());
-      String? error = await repo.resetPassword(email.text);
+      final String? error = await repo.resetPassword(email.text);
       if (error != null) {
         emit(Error(error));
       } else {

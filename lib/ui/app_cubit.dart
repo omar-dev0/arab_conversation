@@ -10,8 +10,8 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class AppViewModel extends Cubit<AppState> {
-  AuthRepo repo;
-  CourseRepo courseRepo;
+  final AuthRepo repo;
+  final CourseRepo courseRepo;
 
   @factoryMethod
   AppViewModel(this.repo , this.courseRepo) : super(InitState());
@@ -21,7 +21,7 @@ class AppViewModel extends Cubit<AppState> {
 
       return const Home();
     } else {
-      return LoginScreen();
+      return const LoginScreen();
     }
   }
 

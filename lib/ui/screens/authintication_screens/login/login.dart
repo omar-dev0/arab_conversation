@@ -14,7 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class LoginScreen extends StatefulWidget {
   static const String route = 'loginScreen';
 
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -36,11 +36,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (state is Loading) {
                   loadingDialog(context);
                 }
-                if (state is Success) {
+                else if (state is Success) {
                   closeDialog(context);
                   Navigator.pushReplacementNamed(context, Home.route);
                 }
-                if (state is Error) {
+                else if (state is Error) {
                   closeDialog(context);
                   showCustomDialog(
                     context,
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     content: Text(
                       state.error,
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Color(0xFF7D848D), fontSize: 16),
+                      style: const TextStyle(color: Color(0xFF7D848D), fontSize: 16),
                     ),
                     negative: () {
                       Navigator.pop(context);
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         key: loginViewModel.formKey,
                         child: Padding(
                           padding:
-                              EdgeInsetsDirectional.symmetric(horizontal: 16),
+                              const EdgeInsetsDirectional.symmetric(horizontal: 16),
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 Row(
                                   children: [
-                                    Expanded(
+                                    const Expanded(
                                         child: SizedBox(
                                       width: double.infinity,
                                     )),
@@ -175,7 +175,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   height: 24.h,
                                 ),
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: (){
+                                     loginViewModel.loginWithGoogle();
+                                  },
                                   child: Container(
                                     width: 320.w,
                                     padding: EdgeInsetsDirectional.symmetric(

@@ -60,7 +60,7 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i9.CourseRepo>(),
           gh<_i11.AuthRepo>(),
         ));
-    gh.singleton<_i15.ProfileViewModel>(
+    gh.factory<_i15.ProfileViewModel>(
         () => _i15.ProfileViewModel(gh<_i11.AuthRepo>()));
     gh.factory<_i16.ForgetPasswordViewModel>(
         () => _i16.ForgetPasswordViewModel(gh<_i11.AuthRepo>()));

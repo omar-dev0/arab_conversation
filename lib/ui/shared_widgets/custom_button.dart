@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatelessWidget {
-  Function onPress;
-  String text;
+  final Function onPress;
+  final String text;
 
-  CustomButton({
+  const CustomButton({
     super.key,
     required this.text,
     required this.onPress,

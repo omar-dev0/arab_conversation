@@ -7,11 +7,11 @@ import 'package:injectable/injectable.dart';
 @Singleton(as: CourseRepo)
 @Injectable(as: CourseRepo)
 class CourseRepoImp extends CourseRepo {
-  CourseDataSource source;
-  List<Course> course = [];
-  List<CourseItem> chapter = [];
-  String fullPathOFCourse = "";
-  List<Course> paidCourses = [];
+  final CourseDataSource source;
+   List<Course> course = [];
+   List<CourseItem> chapter = [];
+   String fullPathOFCourse = "";
+   List<Course> paidCourses = [];
   List<Course> availableCourses = [];
   @factoryMethod
   CourseRepoImp(this.source);
