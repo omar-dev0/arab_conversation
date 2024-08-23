@@ -3,7 +3,6 @@ import 'package:arab_conversation/data/model/course_item.dart';
 import 'package:arab_conversation/data/repository/auth_repo.dart';
 import 'package:arab_conversation/data/repository/course_repo.dart';
 import 'package:arab_conversation/ui/screens/tabs/home_screen/home_cubit/home_state.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_audio/just_audio.dart';
