@@ -1,3 +1,4 @@
+import 'package:arab_conversation/data/model/course.dart';
 import 'package:arab_conversation/data/model/course_item.dart';
 import 'package:arab_conversation/di/di.dart';
 import 'package:arab_conversation/ui/screens/course_ccontent/play_list_bottomSheet.dart';
@@ -17,9 +18,10 @@ class ListenScreen extends StatefulWidget {
   final CourseItem? chapter;
   final String? name;
   final List<CourseItem>? chapters;
+  Course? course;
   final int? index;
    bool clicked = false;
-   ListenScreen({super.key, this.chapter, this.name, this.chapters, this.index});
+   ListenScreen({super.key, this.chapter, this.name, this.chapters, this.index ,  this.course});
 
   @override
   State<ListenScreen> createState() => _ListenScreenState();
@@ -167,19 +169,7 @@ class _ListenScreenState extends State<ListenScreen> {
                               ),
                               InkWell(
                                 onTap: () async {
-                                  // if (homeCubit.chapterIndex - 1 <= -1) {
-                                  //   homeCubit.chapterIndex =
-                                  //       widget.chapters!.length - 1;
-                                  //   await homeCubit.getUrl(widget.chapters?[
-                                  //           homeCubit.chapterIndex] ??
-                                  //       CourseItem());
-                                  // } else {
-                                  //   homeCubit.chapterIndex =
-                                  //       homeCubit.chapterIndex - 1;
-                                  //   await homeCubit.getUrl(widget.chapters?[
-                                  //           homeCubit.chapterIndex] ??
-                                  //       CourseItem());
-                                  // }
+
                                   Duration currentDuration = homeCubit.audioPlayer.position;
                                   currentDuration-= const Duration(seconds: 5);
                                   homeCubit.audioPlayer.seek(currentDuration);
@@ -199,19 +189,6 @@ class _ListenScreenState extends State<ListenScreen> {
                               ),
                               InkWell(
                                 onTap: () async {
-                                  // if (homeCubit.chapterIndex + 1 ==
-                                  //     widget.chapters?.length) {
-                                  //   homeCubit.chapterIndex = 0;
-                                  //   await homeCubit.getUrl(widget.chapters?[
-                                  //           homeCubit.chapterIndex] ??
-                                  //       CourseItem());
-                                  // } else {
-                                  //   homeCubit.chapterIndex =
-                                  //       homeCubit.chapterIndex! + 1;
-                                  //   await homeCubit.getUrl(widget.chapters?[
-                                  //           homeCubit.chapterIndex] ??
-                                  //       CourseItem());
-                                  // }
 
                                   Duration currentPosition = homeCubit.audioPlayer.position;
                                   currentPosition+= const Duration(seconds: 5);
@@ -230,6 +207,7 @@ class _ListenScreenState extends State<ListenScreen> {
                                 onTap: () {
                                   _key.currentState?.showBottomSheet(
                                       (context) => PlayListBottomSheet(
+                                        course: widget.course!,
                                             courseName: widget.name ?? "",
                                             courseItem: widget.chapters,
                                           ));

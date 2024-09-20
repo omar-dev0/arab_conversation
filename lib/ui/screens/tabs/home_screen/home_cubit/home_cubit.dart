@@ -11,7 +11,7 @@ import 'package:just_audio/just_audio.dart';
 class HomeViewModel extends Cubit<HomeStates> {
   final AuthRepo authRepo;
   final CourseRepo courseRepo;
-  late final String chapterUrl;
+    String ? chapterUrl;
   AudioPlayer audioPlayer = AudioPlayer();
   int chapterIndex = 0;
   @factoryMethod
@@ -61,7 +61,7 @@ class HomeViewModel extends Cubit<HomeStates> {
   Future<void> getUrl(CourseItem courseItem , [int? index]) async {
    final String path = courseItem.fullPath ?? "";
      chapterUrl = await courseRepo.getUrl(path);
-     audioPlayer.setUrl(chapterUrl);
+     audioPlayer.setUrl(chapterUrl!);
      if(index != null)
        {
          chapterIndex = index;

@@ -14,7 +14,7 @@ class EditUserProfile extends StatefulWidget {
 }
 
 class _EditUserProfileState extends State<EditUserProfile> {
-  late final  ProfileViewModel profileViewModel = BlocProvider.of<ProfileViewModel>(context);
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -28,7 +28,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
           children: [
             IconButton(
               onPressed: () {
-                profileViewModel.backToProfile();
+                BlocProvider.of<ProfileViewModel>(context).backToProfile();
               },
               icon: const Icon(Icons.arrow_back),
               color: Colors.black,
@@ -50,7 +50,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
             )),
             TextButton(
                 onPressed: () async {
-                  await profileViewModel.updateUser();
+                  await BlocProvider.of<ProfileViewModel>(context).updateUser();
                 },
                 child: Text(
                   'Done',
@@ -70,7 +70,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
         height: 8.h,
       ),
       Text(
-        profileViewModel.user.name!,
+        BlocProvider.of<ProfileViewModel>(context).user.name!,
         style: Theme.of(context).textTheme.labelMedium,
       ),
       SizedBox(
@@ -92,7 +92,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
             SizedBox(
               height: 12.h,
             ),
-            ProfileTextField(controller: profileViewModel.firstName),
+            ProfileTextField(controller: BlocProvider.of<ProfileViewModel>(context).firstName),
             SizedBox(
               height: 16.h,
             ),
@@ -106,7 +106,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
             SizedBox(
               height: 12.h,
             ),
-            ProfileTextField(controller:profileViewModel.lastName),
+            ProfileTextField(controller: BlocProvider.of<ProfileViewModel>(context).lastName),
             SizedBox(
               height: 16.h,
             ),
@@ -121,7 +121,7 @@ class _EditUserProfileState extends State<EditUserProfile> {
               height: 12.h,
             ),
             ProfileTextField(
-              controller:profileViewModel.email,
+              controller: BlocProvider.of<ProfileViewModel>(context).email,
               isEnabled: false,
             ),
           ],

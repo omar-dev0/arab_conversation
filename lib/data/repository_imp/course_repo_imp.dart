@@ -26,7 +26,6 @@ class CourseRepoImp extends CourseRepo {
   Future<List<CourseItem>> getCourseContent(String folderPath) async {
     if (fullPathOFCourse != folderPath) {
       fullPathOFCourse = folderPath;
-      print('test');
       chapter = await source.getCourseContent(folderPath);
     }
     return chapters;
@@ -60,6 +59,7 @@ class CourseRepoImp extends CourseRepo {
     }
   }
 
+  @override
   List<Course> get userPaidCourses => paidCourses;
 
   @override
@@ -69,5 +69,5 @@ class CourseRepoImp extends CourseRepo {
   }
 
   @override
-  List<Course> get AvailableCourse => availableCourses;
+  List<Course> get availableCourse => availableCourses;
 }

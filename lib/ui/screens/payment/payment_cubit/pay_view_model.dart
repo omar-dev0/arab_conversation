@@ -13,7 +13,7 @@ class PaymentViewModel extends Cubit<PaymentStatus>{
   final CourseRepo courseRepo;
   final AuthRepo authRepo;
   final InAppPurchase _inAppPurchase = InAppPurchase.instance;
-  late final List<Course> available = courseRepo.AvailableCourse;
+  late final List<Course> available = courseRepo.availableCourse;
   List<ProductDetails> products = [];
   StreamSubscription<List<PurchaseDetails>>? _subscription;
   final Set<String> pIds = {};
@@ -22,7 +22,7 @@ class PaymentViewModel extends Cubit<PaymentStatus>{
   PaymentViewModel(this.courseRepo , this.authRepo):super(InitStatePayment());
 
   void getIDS() async {
-    for (Course course in courseRepo.AvailableCourse) {
+    for (Course course in courseRepo.availableCourse) {
       pIds.add(course.id ?? '');
     }
     response = await _inAppPurchase.queryProductDetails(pIds);

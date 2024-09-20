@@ -126,11 +126,11 @@ class Profile extends StatelessWidget {
           );
         }
         else if (state is EditProfile ) {
-          return  EditUserProfile();
+          return  const EditUserProfile();
         }
         else if (state is SuccessUpdateProfile)
           {
-            return  EditUserProfile();
+            return  const EditUserProfile();
           }
         else {
           return const Column();

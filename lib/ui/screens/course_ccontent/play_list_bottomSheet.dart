@@ -1,3 +1,4 @@
+import 'package:arab_conversation/data/model/course.dart';
 import 'package:arab_conversation/data/model/course_item.dart';
 import 'package:arab_conversation/ui/shared_widgets/course_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class PlayListBottomSheet extends StatelessWidget {
   List<CourseItem>? courseItem;
   final String courseName;
+  Course course ;
   PlayListBottomSheet(
-      {super.key, required this.courseItem, required this.courseName});
+      {super.key, required this.courseItem, required this.courseName , required this.course});
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class PlayListBottomSheet extends StatelessWidget {
                       courseItem: courseItem?[index],
                       courseName: courseName,
                       inPlayList: true,
+                  course: course,
                   index: index,
                     ),
                 separatorBuilder: (context, index) => SizedBox(

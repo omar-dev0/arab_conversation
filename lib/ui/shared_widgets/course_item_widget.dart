@@ -45,6 +45,7 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => ListenScreen(
+                          course: widget.course ?? Course(),
                               index: widget.index,
                               chapters: widget.chapters,
                               chapter: widget.courseItem,
@@ -55,7 +56,8 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
                     widget.courseItem ?? CourseItem(), widget.index);
                 Navigator.pop(context);
               }
-            } else {
+            }
+            else {
               showDialog(
                   context: context,
                   builder: (context) => Dialog(

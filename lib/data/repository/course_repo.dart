@@ -20,5 +20,5 @@ abstract class CourseRepo {
 
   Future<List<Course>> getAvailableCourse();
 
-  List<Course> get AvailableCourse;
+  List<Course> get availableCourse;
 }
